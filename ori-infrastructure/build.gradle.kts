@@ -36,7 +36,15 @@ dependencies {
     // Configuration Processor
     kapt("org.springframework.boot:spring-boot-configuration-processor")
 
+    // MapStruct
+    implementation("org.mapstruct:mapstruct:1.5.3.Final")
+    kapt("org.mapstruct:mapstruct-processor:1.5.3.Final")
+
     implementation(project(":ori-application"))
+}
+
+repositories {
+    mavenCentral()
 }
 
 tasks.getByName<Jar>("jar") {
@@ -45,8 +53,10 @@ tasks.getByName<Jar>("jar") {
 
 allOpen {
     annotation("javax.persistence.Entity")
+    annotation("javax.persistence.MappedSuperclass")
 }
 
 noArg {
     annotation("javax.persistence.Entity")
+    annotation("javax.persistence.MappedSuperclass")
 }
