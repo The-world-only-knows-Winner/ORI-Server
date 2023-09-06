@@ -40,6 +40,9 @@ dependencies {
     implementation("org.mapstruct:mapstruct:1.5.3.Final")
     kapt("org.mapstruct:mapstruct-processor:1.5.3.Final")
 
+    // Redis
+    implementation("org.springframework.boot:spring-boot-starter-data-redis:3.1.3")
+
     // Swagger
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.4")
 

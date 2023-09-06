@@ -12,3 +12,8 @@ spring:
 
   jackson:
     property-naming-strategy: SNAKE_CASE
+
+redis:
+  port: ${REDIS_PORT:6379}
+  host: ${REDIS_HOST:localhost}
+  password: ${REDIS_PASSWORD:asdf}
