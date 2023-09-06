@@ -4,7 +4,7 @@ import com.onlywin.ori.user.User
 import org.mapstruct.Mapper
 
 @Mapper
-interface UserMapper {
-    fun userDomainToEntity(user: User): UserEntity
-    fun userEntityToDomain(userEntity: UserEntity): User
+abstract class UserMapper {
+    abstract fun userDomainToEntity(user: User): UserEntity
+    abstract fun userEntityToDomain(userEntity: UserEntity): User
 }
