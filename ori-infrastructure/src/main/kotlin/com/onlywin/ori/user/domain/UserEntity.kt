@@ -1,12 +1,12 @@
 package com.onlywin.ori.user.domain
 
 import com.onlywin.ori.common.entity.BaseUUIDEntity
+import jakarta.persistence.Column
+import jakarta.persistence.Entity
+import jakarta.persistence.Table
+import jakarta.validation.constraints.NotNull
 import java.time.LocalDate
 import java.util.UUID
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.Table
-import javax.validation.constraints.NotNull
 
 @Entity
 @Table(name = "tbl_user")

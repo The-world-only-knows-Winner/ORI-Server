@@ -25,7 +25,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 
     //  MySQL
-    runtimeOnly("mysql:mysql-connector-java")
+    implementation("mysql:mysql-connector-java:8.0.33")
 
     // Open Feign
     implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
@@ -55,11 +55,11 @@ tasks.getByName<Jar>("jar") {
 }
 
 allOpen {
-    annotation("javax.persistence.Entity")
-    annotation("javax.persistence.MappedSuperclass")
+    annotation("jakarta.persistence.Entity")
+    annotation("jakarta.persistence.MappedSuperclass")
 }
 
 noArg {
-    annotation("javax.persistence.Entity")
-    annotation("javax.persistence.MappedSuperclass")
+    annotation("jakarta.persistence.Entity")
+    annotation("jakarta.persistence.MappedSuperclass")
 }
