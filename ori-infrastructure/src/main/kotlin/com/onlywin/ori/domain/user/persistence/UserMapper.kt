@@ -1,6 +1,6 @@
-package com.onlywin.ori.user.domain
+package com.onlywin.ori.domain.user.persistence
 
-import com.onlywin.ori.user.User
+import com.onlywin.ori.domain.user.model.User
 import org.mapstruct.Mapper
 
 @Mapper

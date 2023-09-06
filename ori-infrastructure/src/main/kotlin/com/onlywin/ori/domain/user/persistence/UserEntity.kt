@@ -1,4 +1,4 @@
-package com.onlywin.ori.user.domain
+package com.onlywin.ori.domain.user.persistence
 
 import com.onlywin.ori.common.entity.BaseUUIDEntity
 import jakarta.persistence.Column
