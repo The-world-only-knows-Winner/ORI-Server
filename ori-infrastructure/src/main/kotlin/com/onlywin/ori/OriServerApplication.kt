@@ -6,7 +6,6 @@ import org.springframework.boot.runApplication
 
 internal const val BASE_PACKAGE = "com.onlywin.ori"
 
-@ConfigurationPropertiesScan
 @SpringBootApplication
 class OriServerApplication
 
