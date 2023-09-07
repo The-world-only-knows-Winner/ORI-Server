@@ -16,23 +16,13 @@ class UserDetails (
         TODO("Not yet implemented")
     }
 
-    override fun getUsername(): String {
-        return userId.toString()
-    }
+    override fun getUsername() = userId.toString()
 
-    override fun isAccountNonExpired(): Boolean {
-        return false
-    }
+    override fun isAccountNonExpired() = true
 
-    override fun isAccountNonLocked(): Boolean {
-        return false
-    }
+    override fun isAccountNonLocked() = true
 
-    override fun isCredentialsNonExpired(): Boolean {
-        return false
-    }
+    override fun isCredentialsNonExpired() = true
 
-    override fun isEnabled(): Boolean {
-        return false
-    }
+    override fun isEnabled() = true
 }
