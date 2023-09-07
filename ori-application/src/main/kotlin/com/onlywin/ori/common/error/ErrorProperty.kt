@@ -2,6 +2,6 @@ package com.onlywin.ori.common.error
 
 interface ErrorProperty {
 
-    val status: HttpStatus
+    val status: Int
     val message: String
 }

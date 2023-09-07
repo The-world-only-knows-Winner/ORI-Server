@@ -31,7 +31,7 @@ class GlobalExceptionFilter(
 
     private fun writeErrorResponse(response: HttpServletResponse, errorProperty: ErrorProperty) {
         response.apply {
-            status = errorProperty.status.value
+            status = errorProperty.status
             contentType = "application/json"
             characterEncoding = "UTF-8"
         }
