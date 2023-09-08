@@ -9,6 +9,8 @@ import org.springframework.web.filter.OncePerRequestFilter
 import jakarta.servlet.FilterChain
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
+import org.springframework.http.MediaType
+import java.nio.charset.StandardCharsets
 
 class GlobalExceptionFilter(
     private val objectMapper: ObjectMapper,
@@ -32,8 +34,8 @@ class GlobalExceptionFilter(
     private fun writeErrorResponse(response: HttpServletResponse, errorProperty: ErrorProperty) {
         response.apply {
             status = errorProperty.status
-            contentType = "application/json"
-            characterEncoding = "UTF-8"
+            contentType = MediaType.APPLICATION_JSON_VALUE
+            characterEncoding = StandardCharsets.UTF_8.name()
         }
         val errorResponse = ErrorResponse(
             status = errorProperty.status,
