@@ -4,4 +4,5 @@ interface ErrorProperty {
 
     val status: Int
     val message: String
+
 }
