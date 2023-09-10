@@ -5,6 +5,4 @@ import com.onlywin.ori.common.error.OriException
 
 object InvalidTokenException : OriException(
     GlobalErrorCode.INVALID_TOKEN
-) {
-    private fun readResolve(): Any = InvalidTokenException
-}
+)
