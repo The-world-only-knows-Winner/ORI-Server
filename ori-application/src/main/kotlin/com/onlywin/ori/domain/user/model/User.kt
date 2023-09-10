@@ -1,4 +1,4 @@
-package com.onlywin.ori.user
+package com.onlywin.ori.domain.user.model
 
 import com.onlywin.ori.common.annotation.Aggregate
 import java.time.LocalDate
