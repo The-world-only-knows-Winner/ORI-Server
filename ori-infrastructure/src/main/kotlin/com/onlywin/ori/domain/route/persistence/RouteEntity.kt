@@ -1,4 +1,4 @@
-package com.onlywin.ori.route.domain
+package com.onlywin.ori.domain.route.persistence
 
 import com.onlywin.ori.common.entity.BaseUUIDEntity
 import com.onlywin.ori.domain.user.persistence.UserEntity

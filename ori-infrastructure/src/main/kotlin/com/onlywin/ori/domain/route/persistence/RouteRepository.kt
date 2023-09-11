@@ -1,4 +1,4 @@
-package com.onlywin.ori.route.domain
+package com.onlywin.ori.domain.route.persistence
 
 import org.springframework.data.repository.CrudRepository
 import java.util.UUID

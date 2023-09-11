@@ -1,7 +1,7 @@
-package com.onlywin.ori.station.domain
+package com.onlywin.ori.domain.station.persistence
 
 import com.onlywin.ori.common.entity.BaseUUIDEntity
-import com.onlywin.ori.route.domain.RouteEntity
+import com.onlywin.ori.domain.route.persistence.RouteEntity
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.FetchType

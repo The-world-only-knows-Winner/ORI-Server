@@ -1,4 +1,4 @@
-package com.onlywin.ori.route
+package com.onlywin.ori.domain.route.model
 
 import com.onlywin.ori.common.annotation.Aggregate
 import java.util.UUID
