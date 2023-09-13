@@ -6,7 +6,6 @@ import org.springframework.data.redis.core.TimeToLive
 
 @RedisHash
 class AuthCodeEntity(
-
     @Id
     val id: String,
 
@@ -15,5 +14,5 @@ class AuthCodeEntity(
     val verified: Boolean,
 
     @TimeToLive
-    var ttl: Long
+    var ttl: Long,
 )

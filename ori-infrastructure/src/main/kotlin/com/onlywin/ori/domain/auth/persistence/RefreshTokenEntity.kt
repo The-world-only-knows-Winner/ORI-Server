@@ -18,5 +18,4 @@ class RefreshTokenEntity(
 
     @TimeToLive
     val ttl: Long,
-
 )

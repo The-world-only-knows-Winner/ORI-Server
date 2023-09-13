@@ -5,7 +5,6 @@ import org.mapstruct.Mapper
 
 @Mapper(componentModel = "spring")
 abstract class AuthCodeMapper {
-
     abstract fun authCodeDomainToEntity(authCode: AuthCode): AuthCodeEntity
     abstract fun authCodeEntityToDomain(authCodeEntity: AuthCodeEntity?): AuthCode?
 }
