@@ -1,21 +1,18 @@
 package com.onlywin.ori.domain.auth.persistence
 
-import com.onlywin.ori.common.entity.BaseUUIDEntity
 import org.springframework.data.annotation.Id
 import org.springframework.data.redis.core.RedisHash
 import org.springframework.data.redis.core.TimeToLive
-import org.springframework.data.redis.core.index.Indexed
-import java.util.UUID
 
 @RedisHash
-class RefreshTokenEntity(
-
+class AuthCodeEntity(
     @Id
-    val id: UUID,
+    val id: String,
 
-    @Indexed
-    val token: String,
+    val code: String,
+
+    val verified: Boolean,
 
     @TimeToLive
-    val ttl: Long,
+    var ttl: Long,
 )

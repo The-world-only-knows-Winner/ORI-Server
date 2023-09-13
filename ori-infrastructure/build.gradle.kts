@@ -49,6 +49,9 @@ dependencies {
     // Swagger
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.4")
 
+    // Mail
+    implementation("org.springframework.boot:spring-boot-starter-mail")
+
     implementation(project(":ori-application"))
 }
 

@@ -8,4 +8,6 @@ enum class UserErrorCode(
 ): ErrorProperty {
 
     USER_NOT_FOUND(404, "User Not Found"),
+
+    USER_ALREADY_EXISTS(409, "User Already Exists");
 }
