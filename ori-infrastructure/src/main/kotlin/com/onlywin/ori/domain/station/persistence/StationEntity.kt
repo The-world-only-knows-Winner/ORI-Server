@@ -24,7 +24,7 @@ class StationEntity(
     val stationName: String,
 
     @field:NotNull
-    @Column(columnDefinition = "INT")
+    @Column(name = "cl_index", columnDefinition = "INT")
     val index: Int,
 
     @field:NotNull
