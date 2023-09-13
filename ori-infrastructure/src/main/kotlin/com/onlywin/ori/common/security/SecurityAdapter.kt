@@ -1,5 +1,6 @@
 package com.onlywin.ori.common.security
 
+import com.onlywin.ori.common.annotation.Adapter
 import com.onlywin.ori.common.spi.SecurityPort
 import com.onlywin.ori.domain.user.persistence.UserPersistenceAdapter
 import com.onlywin.ori.domain.user.persistence.UserRepository
@@ -9,10 +10,9 @@ import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Component
 import java.util.UUID
 
-@Component
+@Adapter
 class SecurityAdapter(
     private val passwordEncoder: PasswordEncoder,
-    private val userPersistenceAdapter: UserPersistenceAdapter,
 ) : SecurityPort {
 
     override fun encodePassword(password: String): String =
