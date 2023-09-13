@@ -1,4 +1,4 @@
-package com.onlywin.ori.domain.station.model
+package com.onlywin.ori.domain.station
 
 import com.onlywin.ori.common.annotation.Aggregate
 import java.util.UUID

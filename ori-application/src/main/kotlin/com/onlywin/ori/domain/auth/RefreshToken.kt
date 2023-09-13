@@ -1,4 +1,4 @@
-package com.onlywin.ori.domain.auth.model
+package com.onlywin.ori.domain.auth
 
 import com.onlywin.ori.common.annotation.Aggregate
 import java.util.UUID

@@ -1,7 +1,7 @@
 package com.onlywin.ori.domain.route.persistence
 
 import com.onlywin.ori.domain.user.persistence.UserRepository
-import com.onlywin.ori.domain.route.model.Route
+import com.onlywin.ori.domain.route.Route
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping
 import org.springframework.beans.factory.annotation.Autowired
