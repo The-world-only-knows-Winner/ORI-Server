@@ -14,7 +14,6 @@ class SignInUseCase(
     private val queryUserPort: QueryUserPort,
     private val jwtPort: JwtPort,
 ) {
-
     fun execute(request: SignInRequest): TokenResponse {
         val user = queryUserPort.queryUserByEmail(request.email)
             ?: throw UnAuthorizedException
