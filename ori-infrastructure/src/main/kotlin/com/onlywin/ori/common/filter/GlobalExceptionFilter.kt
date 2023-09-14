@@ -14,20 +14,20 @@ import java.nio.charset.StandardCharsets
 
 class GlobalExceptionFilter(
     private val objectMapper: ObjectMapper,
-): OncePerRequestFilter() {
+) : OncePerRequestFilter() {
 
     override fun doFilterInternal(
         request: HttpServletRequest,
         response: HttpServletResponse,
-        filterChain: FilterChain
+        filterChain: FilterChain,
     ) {
         try {
-            filterChain.doFilter(request, response);
+            filterChain.doFilter(request, response)
         } catch (e: OriException) {
-            writeErrorResponse(response, e.errorProperty);
+            writeErrorResponse(response, e.errorProperty)
         } catch (e: Exception) {
             e.printStackTrace()
-            writeErrorResponse(response, GlobalErrorCode.INTERNAL_SERVER_ERROR);
+            writeErrorResponse(response, GlobalErrorCode.INTERNAL_SERVER_ERROR)
         }
     }
 
@@ -39,10 +39,10 @@ class GlobalExceptionFilter(
         }
         val errorResponse = ErrorResponse(
             status = errorProperty.status,
-            message = errorProperty.message
+            message = errorProperty.message,
         )
         response.writer.write(
-            objectMapper.writeValueAsString(errorResponse)
+            objectMapper.writeValueAsString(errorResponse),
         )
     }
 }

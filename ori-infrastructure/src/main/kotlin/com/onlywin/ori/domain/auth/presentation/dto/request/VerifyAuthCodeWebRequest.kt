@@ -1,6 +1,6 @@
 package com.onlywin.ori.domain.auth.presentation.dto.request
 
-import com.onlywin.ori.domain.auth.dto.VerifyAuthCodeRequest
+import com.onlywin.ori.domain.auth.dto.request.VerifyAuthCodeRequest
 import jakarta.validation.constraints.Email
 import jakarta.validation.constraints.NotBlank
 import jakarta.validation.constraints.Size
@@ -17,6 +17,6 @@ data class VerifyAuthCodeWebRequest(
 ) {
     fun toDomainRequest() = VerifyAuthCodeRequest(
         email = email,
-        code = code
+        code = code,
     )
 }

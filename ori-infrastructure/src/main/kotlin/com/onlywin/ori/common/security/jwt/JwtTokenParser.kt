@@ -9,7 +9,6 @@ import io.jsonwebtoken.Jwts
 import jakarta.servlet.http.HttpServletRequest
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
-import org.springframework.security.core.userdetails.UserDetails
 import org.springframework.stereotype.Component
 
 @Component
@@ -32,7 +31,7 @@ class JwtTokenParser(
     fun resolveToken(request: HttpServletRequest): String? {
         val token = request.getHeader(jwtProperties.header)
         if (token != null && token.startsWith(jwtProperties.prefix)) {
-            return token.replace(jwtProperties.prefix, "");
+            return token.replace(jwtProperties.prefix, "")
         }
         return null
     }

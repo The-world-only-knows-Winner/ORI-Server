@@ -12,12 +12,12 @@ class AuthCodePersistenceAdapter(
 ) : AuthCodePort {
 
     override fun queryAuthCodeByEmail(email: String) = authCodeMapper.authCodeEntityToDomain(
-            authCodeRepository.findByIdOrNull(email)
+        authCodeRepository.findByIdOrNull(email),
     )
 
     override fun saveAuthCode(authCode: AuthCode) = authCodeMapper.authCodeEntityToDomain(
         authCodeRepository.save(
-            authCodeMapper.authCodeDomainToEntity(authCode)
-        )
+            authCodeMapper.authCodeDomainToEntity(authCode),
+        ),
     )!!
 }

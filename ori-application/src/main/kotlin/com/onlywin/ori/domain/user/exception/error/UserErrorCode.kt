@@ -5,9 +5,9 @@ import com.onlywin.ori.common.error.ErrorProperty
 enum class UserErrorCode(
     override val status: Int,
     override val message: String,
-): ErrorProperty {
+) : ErrorProperty {
 
     USER_NOT_FOUND(404, "User Not Found"),
 
-    USER_ALREADY_EXISTS(409, "User Already Exists");
+    USER_ALREADY_EXISTS(409, "User Already Exists"),
 }

@@ -4,9 +4,9 @@ import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.userdetails.UserDetails
 import java.util.UUID
 
-class UserDetails (
+class UserDetails(
     private val userId: UUID,
-): UserDetails {
+) : UserDetails {
 
     override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
         TODO("Not yet implemented")

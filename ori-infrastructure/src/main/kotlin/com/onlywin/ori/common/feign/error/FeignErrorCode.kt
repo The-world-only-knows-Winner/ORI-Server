@@ -11,5 +11,5 @@ enum class FeignErrorCode(
     FEIGN_UNAUTHORIZED(401, "Feign Unauthorized"),
     FEIGN_FORBIDDEN(403, "Feign Forbidden."),
     FEIGN_EXPIRED_TOKEN(419, "Feign Expired Token."),
-    FEIGN_INTERNAL_SERVER_ERROR(500, "Feign Internal Server Error.");
+    FEIGN_INTERNAL_SERVER_ERROR(500, "Feign Internal Server Error."),
 }

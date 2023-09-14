@@ -4,5 +4,5 @@ import com.onlywin.ori.common.error.GlobalErrorCode
 import com.onlywin.ori.common.error.OriException
 
 object InvalidTokenException : OriException(
-    GlobalErrorCode.INVALID_TOKEN
+    GlobalErrorCode.INVALID_TOKEN,
 )

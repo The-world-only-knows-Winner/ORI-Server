@@ -13,6 +13,6 @@ class SwaggerConfig {
         .info(
             Info().title("ORI-Server API")
                 .description("ORI-Server API 명세입니다.")
-                .version("v1")
+                .version("v1"),
         )
 }
