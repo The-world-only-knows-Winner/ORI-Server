@@ -15,6 +15,7 @@ class UserWebAdapter(
 ) {
 
     @PostMapping("/signup")
-    fun signup(@RequestBody @Valid request: SignUpWebRequest) =
+    fun signup(@RequestBody @Valid request: SignUpWebRequest) {
         signUpUseCase.execute(request.toDomainRequest())
+    }
 }

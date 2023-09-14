@@ -7,7 +7,7 @@ import org.springframework.mail.javamail.JavaMailSender
 
 @Adapter
 class SendMailAdapter(
-    private val javaMailSender: JavaMailSender
+    private val javaMailSender: JavaMailSender,
 ) : SendMailPort {
 
     override fun sendMail(title: String, content: String, email: String) {

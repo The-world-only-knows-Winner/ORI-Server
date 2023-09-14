@@ -9,7 +9,7 @@ import org.springframework.data.redis.repository.configuration.EnableRedisReposi
 
 @EnableRedisRepositories
 @Configuration
-class RedisConfig (
+class RedisConfig(
     private val redisProperties: RedisProperties,
 ) {
 
@@ -17,7 +17,7 @@ class RedisConfig (
     fun redisConnectionFactory(): RedisConnectionFactory {
         val configuration = RedisStandaloneConfiguration(
             redisProperties.host,
-            redisProperties.port
+            redisProperties.port,
         ).also {
             it.setPassword(redisProperties.password)
         }

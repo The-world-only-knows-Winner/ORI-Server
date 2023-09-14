@@ -21,13 +21,13 @@ class SendAuthCodeUseCase(
                 code = code,
                 verified = false,
                 ttl = 300L,
-            )
+            ),
         )
 
         sendMailPort.sendMail(
             "오리 메일 인증",
             "오리 메일 인증 코드입니다.\n $code",
-            request.email
+            request.email,
         )
     }
 }

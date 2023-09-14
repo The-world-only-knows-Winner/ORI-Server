@@ -37,8 +37,8 @@ class SignUpUseCase(
                 password = securityPort.encodePassword(request.password),
                 name = request.name,
                 birthday = request.birthday,
-                deviceToken = request.deviceToken
-            )
+                deviceToken = request.deviceToken,
+            ),
         )
     }
 }

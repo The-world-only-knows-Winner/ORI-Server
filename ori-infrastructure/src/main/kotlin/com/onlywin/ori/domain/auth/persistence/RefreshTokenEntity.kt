@@ -1,6 +1,5 @@
 package com.onlywin.ori.domain.auth.persistence
 
-import com.onlywin.ori.common.entity.BaseUUIDEntity
 import org.springframework.data.annotation.Id
 import org.springframework.data.redis.core.RedisHash
 import org.springframework.data.redis.core.TimeToLive

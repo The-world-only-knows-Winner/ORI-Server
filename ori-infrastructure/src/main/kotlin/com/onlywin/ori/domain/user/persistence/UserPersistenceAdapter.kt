@@ -13,12 +13,15 @@ class UserPersistenceAdapter(
 ) : UserPort {
 
     override fun saveUser(user: User): User = userMapper.userEntityToDomain(
-        userRepository.save(userMapper.userDomainToEntity(user))
+        userRepository.save(userMapper.userDomainToEntity(user)),
     )!!
 
     override fun queryUserById(id: UUID): User? = userMapper.userEntityToDomain(
-        userRepository.findByIdOrNull(id)
+        userRepository.findByIdOrNull(id),
     )
+
+    override fun queryUserByEmail(email: String): User? =
+        userRepository.findByEmail(email)
 
     override fun existsUserByEmail(email: String): Boolean =
         userRepository.existsByEmail(email)

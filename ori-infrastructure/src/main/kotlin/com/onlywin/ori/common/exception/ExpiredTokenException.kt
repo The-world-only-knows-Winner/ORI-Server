@@ -4,5 +4,5 @@ import com.onlywin.ori.common.error.GlobalErrorCode
 import com.onlywin.ori.common.error.OriException
 
 object ExpiredTokenException : OriException(
-    GlobalErrorCode.EXPIRED_TOKEN
+    GlobalErrorCode.EXPIRED_TOKEN,
 )

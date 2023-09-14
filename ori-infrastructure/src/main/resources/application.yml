@@ -28,7 +28,6 @@ spring:
             enable: true
             required: true
 
-
 jwt:
   header: ${JWT_HEADER:Authorization}
   prefix : ${JWT_PREFIX:Bearer }

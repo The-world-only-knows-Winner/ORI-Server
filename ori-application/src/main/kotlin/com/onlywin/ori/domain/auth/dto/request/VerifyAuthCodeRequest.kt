@@ -1,4 +1,4 @@
-package com.onlywin.ori.domain.auth.dto
+package com.onlywin.ori.domain.auth.dto.request
 
 data class VerifyAuthCodeRequest(
     val email: String,

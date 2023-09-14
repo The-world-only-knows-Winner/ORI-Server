@@ -9,6 +9,8 @@ enum class AuthErrorCode(
 
     INVALID_AUTH_CODE(401, "Invalid Auth Code"),
 
+    UN_AUTHORIZED(401, "Un Authorized"),
+
     UNVERIFIED_EMAIL(403, "Unverified Email"),
 
     AUTH_CODE_NOT_FOUND(404, "Auth Code Not Found"),

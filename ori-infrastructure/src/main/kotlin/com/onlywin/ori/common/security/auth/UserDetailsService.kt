@@ -12,7 +12,7 @@ import java.util.UUID
 @Service
 class UserDetailsService(
     private val userRepository: UserRepository,
-): UserDetailsService {
+) : UserDetailsService {
 
     override fun loadUserByUsername(userId: String?): UserDetails {
         val userEntity: UserEntity = userRepository.findByIdOrNull(UUID.fromString(userId))

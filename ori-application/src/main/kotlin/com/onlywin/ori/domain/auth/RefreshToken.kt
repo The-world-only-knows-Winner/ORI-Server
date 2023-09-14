@@ -7,5 +7,5 @@ import java.util.UUID
 data class RefreshToken(
     val id: UUID,
     val token: String,
-    val ttl: Long
+    val ttl: Long,
 )

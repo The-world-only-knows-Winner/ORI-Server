@@ -15,7 +15,7 @@ import java.util.UUID
 class JwtTokenAdapter(
     private val jwtProperties: JwtProperties,
     private val refreshTokenRepository: RefreshTokenRepository,
-): JwtPort {
+) : JwtPort {
 
     override fun generateTokens(id: UUID): TokenResponse {
         val accessToken = generateAccessToken(id)
@@ -25,7 +25,7 @@ class JwtTokenAdapter(
             accessToken = accessToken,
             accessExpiresAt = LocalDateTime.now().plusSeconds(jwtProperties.accessExp.toLong()),
             refreshToken = refreshToken,
-            refreshExpiresAt = LocalDateTime.now().plusSeconds(jwtProperties.refreshExp.toLong())
+            refreshExpiresAt = LocalDateTime.now().plusSeconds(jwtProperties.refreshExp.toLong()),
         )
     }
 
@@ -39,8 +39,8 @@ class JwtTokenAdapter(
             RefreshTokenEntity(
                 id = id,
                 token = token,
-                ttl = jwtProperties.refreshExp.toLong()
-            )
+                ttl = jwtProperties.refreshExp.toLong(),
+            ),
         )
         return token
     }
