@@ -1,5 +1,6 @@
 package com.onlywin.ori.domain.auth.presentation
 
+import com.onlywin.ori.domain.auth.dto.response.TokenResponse
 import com.onlywin.ori.domain.auth.presentation.dto.request.SendAuthCodeWebRequest
 import com.onlywin.ori.domain.auth.presentation.dto.request.SignInWebRequest
 import com.onlywin.ori.domain.auth.presentation.dto.request.VerifyAuthCodeWebRequest
@@ -32,7 +33,7 @@ class AuthWebAdapter(
     }
 
     @PostMapping("/token")
-    fun signIn(@RequestBody request: SignInWebRequest) {
-        signInUseCase.execute(request.toDomainRequest())
+    fun signIn(@RequestBody request: SignInWebRequest): TokenResponse {
+        return signInUseCase.execute(request.toDomainRequest())
     }
 }
