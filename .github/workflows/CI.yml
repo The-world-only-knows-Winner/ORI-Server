@@ -1,4 +1,4 @@
-name: Ktlint Ci
+name: Ori-CI
 
 on: [pull_request]
 
