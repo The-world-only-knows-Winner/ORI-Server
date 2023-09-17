@@ -52,7 +52,7 @@ class StationClientImpl(
                             busLocalID = busInfo.findValueByFieldName(BUS_ID),
                             busNo = busInfo.findValueByFieldName(BUS_NUMBER),
                         )
-                    }
+                    },
                 )
             }
 

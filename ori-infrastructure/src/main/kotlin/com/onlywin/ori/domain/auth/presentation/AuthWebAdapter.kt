@@ -23,12 +23,18 @@ class AuthWebAdapter(
 ) {
 
     @PostMapping("/code")
-    fun sendAuthCode(@RequestBody @Valid request: SendAuthCodeWebRequest) {
+    fun sendAuthCode(
+        @RequestBody @Valid
+        request: SendAuthCodeWebRequest,
+    ) {
         sendAuthCodeUseCase.execute(request.toDomainRequest())
     }
 
     @PatchMapping("/code")
-    fun verifyAuthCode(@RequestBody @Valid request: VerifyAuthCodeWebRequest) {
+    fun verifyAuthCode(
+        @RequestBody @Valid
+        request: VerifyAuthCodeWebRequest,
+    ) {
         verifyAuthCodeUseCase.execute(request.toDomainRequest())
     }
 

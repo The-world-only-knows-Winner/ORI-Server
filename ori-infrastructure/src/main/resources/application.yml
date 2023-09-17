@@ -39,3 +39,7 @@ redis:
   port: ${REDIS_PORT:6379}
   host: ${REDIS_HOST:localhost}
   password: ${REDIS_PASSWORD:asdf}
+
+api:
+  host: ${API_HOST}
+  key: ${API_KEY}
