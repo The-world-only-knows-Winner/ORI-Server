@@ -6,7 +6,7 @@ import org.mapstruct.Mapper
 import org.mapstruct.Mapping
 import org.springframework.beans.factory.annotation.Autowired
 
-@Mapper
+@Mapper(componentModel = "spring")
 abstract class RouteMapper {
 
     @Autowired
