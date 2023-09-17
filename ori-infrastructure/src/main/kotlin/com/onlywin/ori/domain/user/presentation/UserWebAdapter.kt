@@ -15,7 +15,7 @@ class UserWebAdapter(
 ) {
 
     @PostMapping("/signup")
-    fun signup(
+    fun signUp(
         @RequestBody @Valid
         request: SignUpWebRequest,
     ) {

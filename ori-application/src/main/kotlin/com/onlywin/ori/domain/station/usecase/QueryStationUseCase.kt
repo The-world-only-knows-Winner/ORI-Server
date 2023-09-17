@@ -9,7 +9,7 @@ class QueryStationUseCase(
     private val queryStationPort: QueryStationPort,
 ) {
 
-    fun getStationByStationName(stationName: String) = QueryStationList(
+    fun execute(stationName: String) = QueryStationList(
         queryStationPort.queryStationByStationName(stationName),
     )
 }
