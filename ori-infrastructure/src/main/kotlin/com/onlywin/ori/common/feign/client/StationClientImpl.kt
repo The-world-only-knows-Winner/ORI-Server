@@ -3,6 +3,7 @@ package com.onlywin.ori.common.feign.client
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import com.onlywin.ori.common.util.findValueByFieldName
 import com.onlywin.ori.domain.station.dto.response.QueryStationList.BusInfo
 import com.onlywin.ori.domain.station.dto.response.QueryStationList.StationElement
 import com.onlywin.ori.domain.station.spi.StationPort
@@ -55,12 +56,4 @@ class StationClientImpl(
                     },
                 )
             }
-
-    private fun JsonNode.findValueByFieldName(fieldName: String): String {
-        return try {
-            this.findValue(fieldName).asText()
-        } catch (e: NullPointerException) {
-            ""
-        }
-    }
 }
