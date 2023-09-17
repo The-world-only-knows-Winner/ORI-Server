@@ -49,7 +49,7 @@ class StationClientImpl(
                     pointY = station.findValueByFieldName(POINT_Y).toFloat(),
                     busInfo = station.findValue(BUS_INFO).map { busInfo ->
                         BusInfo(
-                            busLocalID = busInfo.findValueByFieldName(BUS_ID),
+                            busLocalId = busInfo.findValueByFieldName(BUS_ID),
                             busNo = busInfo.findValueByFieldName(BUS_NUMBER),
                         )
                     },

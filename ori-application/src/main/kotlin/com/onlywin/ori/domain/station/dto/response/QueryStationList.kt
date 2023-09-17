@@ -12,7 +12,7 @@ data class QueryStationList(
     )
 
     data class BusInfo(
-        val busLocalID: String,
+        val busLocalId: String,
         val busNo: String,
     )
 }
