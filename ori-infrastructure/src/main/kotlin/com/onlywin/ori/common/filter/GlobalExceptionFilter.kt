@@ -38,11 +38,12 @@ class GlobalExceptionFilter(
     }
 
     private fun writeErrorResponse(response: HttpServletResponse, errorProperty: ErrorProperty) {
+        val errorResponse = ErrorResponse(errorProperty.status, errorProperty.message)
         response.apply {
             status = errorProperty.status
             contentType = MediaType.APPLICATION_JSON_VALUE
             characterEncoding = StandardCharsets.UTF_8.name()
-            writer.write(objectMapper.writeValueAsString(ErrorResponse(errorProperty.status, errorProperty.message)))
+            writer.write(objectMapper.writeValueAsString(errorResponse))
         }
     }
 }
