@@ -15,12 +15,12 @@ class RedisConfig(
 
     @Bean
     fun redisConnectionFactory(): RedisConnectionFactory {
-        val configuration = RedisStandaloneConfiguration(
-            redisProperties.host,
-            redisProperties.port,
-        ).also {
-            it.setPassword(redisProperties.password)
+        val configuration = RedisStandaloneConfiguration(redisProperties.host, redisProperties.port)
+
+        if (redisProperties.password.isNotBlank()) {
+            configuration.setPassword(redisProperties.password)
         }
+
         return LettuceConnectionFactory(configuration)
     }
 }
