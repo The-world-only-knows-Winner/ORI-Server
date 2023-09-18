@@ -29,16 +29,14 @@ spring:
             required: true
 
 jwt:
-  header: ${JWT_HEADER:Authorization}
-  prefix : ${JWT_PREFIX:Bearer }
-  secret: ${JWT_SECRET:asdf}
-  access-exp: ${TOKEN_ACCESS_EXP:3600}
-  refresh-exp: ${TOKEN_REFRESH_EXP:1209600}
+  secret: ${JWT_SECRET}
+  access-exp: ${TOKEN_ACCESS_EXP}
+  refresh-exp: ${TOKEN_REFRESH_EXP}
 
 redis:
-  port: ${REDIS_PORT:6379}
-  host: ${REDIS_HOST:localhost}
-  password: ${REDIS_PASSWORD:asdf}
+  port: ${REDIS_PORT}
+  host: ${REDIS_HOST}
+  password: ${REDIS_PASSWORD}
 
 api:
   host: ${API_HOST}

@@ -17,6 +17,11 @@ class JwtTokenParser(
     private val jwtProperties: JwtProperties,
 ) {
 
+    companion object {
+        const val JWT_HEADER = "Authorization"
+        const val JWT_PREFIX = "Bearer "
+    }
+
     fun getAuthentication(token: String): Authentication {
         val claims = getClaims(token)
 
@@ -29,9 +34,9 @@ class JwtTokenParser(
     }
 
     fun resolveToken(request: HttpServletRequest): String? {
-        val token = request.getHeader(jwtProperties.header)
-        if (token != null && token.startsWith(jwtProperties.prefix)) {
-            return token.replace(jwtProperties.prefix, "")
+        val token = request.getHeader(JWT_HEADER)
+        if (token != null && token.startsWith(JWT_PREFIX)) {
+            return token.replace(JWT_PREFIX, "")
         }
         return null
     }
