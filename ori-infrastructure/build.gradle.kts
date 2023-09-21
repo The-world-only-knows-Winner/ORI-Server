@@ -53,10 +53,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-mail")
 
     // Spring Actuator
-    implementation ("org.springframework.boot:spring-boot-starter-actuator")
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
 
     // Prometheus
-    runtimeOnly ("io.micrometer:micrometer-registry-prometheus")
+    runtimeOnly("io.micrometer:micrometer-registry-prometheus")
 
     implementation(project(":ori-application"))
 }
