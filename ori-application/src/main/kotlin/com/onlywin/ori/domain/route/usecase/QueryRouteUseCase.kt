@@ -20,6 +20,6 @@ class QueryRouteUseCase(
             startYPoint = startYPoint,
             endXPoint = endXPoint,
             endYPoint = endYPoint,
-        )
+        ),
     )
 }

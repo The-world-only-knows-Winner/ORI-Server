@@ -14,6 +14,6 @@ interface RouteClient {
         @RequestParam("SY") startYPoint: Float,
         @RequestParam("EX") endXPoint: Float,
         @RequestParam("EY") endYPoint: Float,
-        @RequestParam("SearchPathType") searchPathType: Int
+        @RequestParam("SearchPathType") searchPathType: Int,
     ): String
 }

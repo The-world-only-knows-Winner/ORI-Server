@@ -19,5 +19,4 @@ class RouteWebAdapter(
         @RequestParam("end_x_point") endXPoint: Float,
         @RequestParam("end_y_point") endYPoint: Float,
     ) = queryRouteUseCase(startXPoint, startYPoint, endXPoint, endYPoint)
-
 }

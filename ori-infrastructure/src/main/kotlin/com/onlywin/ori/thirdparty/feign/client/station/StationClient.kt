@@ -12,6 +12,4 @@ interface StationClient {
         @RequestParam("apiKey") apiKey: String,
         @RequestParam("stationName") stationName: String,
     ): String
-
-
 }

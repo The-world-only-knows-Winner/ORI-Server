@@ -77,7 +77,7 @@ class RouteClientImpl(
                                             pathInfo.findValueByFieldName(FIRST_START_STATION),
                                             pathInfo.findValueByFieldName(LAST_END_STATION),
 
-                                            )
+                                        )
                                     },
                                 path.findValue(SUB_PATH_LIST)
                                     .map { subPath ->
