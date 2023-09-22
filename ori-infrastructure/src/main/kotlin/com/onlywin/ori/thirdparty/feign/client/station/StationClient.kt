@@ -1,4 +1,4 @@
-package com.onlywin.ori.common.feign.client
+package com.onlywin.ori.thirdparty.feign.client.station
 
 import org.springframework.cloud.openfeign.FeignClient
 import org.springframework.web.bind.annotation.GetMapping
