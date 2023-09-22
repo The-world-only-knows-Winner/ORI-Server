@@ -1,4 +1,4 @@
-package com.onlywin.ori.common.feign.client
+package com.onlywin.ori.thirdparty.feign.client.station
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper

@@ -1,11 +1,11 @@
-package com.onlywin.ori.common.feign
+package com.onlywin.ori.thirdparty.feign
 
 import com.onlywin.ori.BASE_PACKAGE
-import com.onlywin.ori.common.feign.exception.FeignBadRequestException
-import com.onlywin.ori.common.feign.exception.FeignExpiredTokenException
-import com.onlywin.ori.common.feign.exception.FeignForbiddenException
-import com.onlywin.ori.common.feign.exception.FeignInternalServerErrorException
-import com.onlywin.ori.common.feign.exception.FeignUnAuthorizedException
+import com.onlywin.ori.thirdparty.feign.exception.FeignBadRequestException
+import com.onlywin.ori.thirdparty.feign.exception.FeignExpiredTokenException
+import com.onlywin.ori.thirdparty.feign.exception.FeignForbiddenException
+import com.onlywin.ori.thirdparty.feign.exception.FeignInternalServerErrorException
+import com.onlywin.ori.thirdparty.feign.exception.FeignUnAuthorizedException
 import feign.FeignException
 import feign.Response
 import feign.codec.ErrorDecoder

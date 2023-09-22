@@ -1,4 +1,4 @@
-package com.onlywin.ori.common.feign.error
+package com.onlywin.ori.thirdparty.feign.error
 
 import com.onlywin.ori.common.error.ErrorProperty
 
