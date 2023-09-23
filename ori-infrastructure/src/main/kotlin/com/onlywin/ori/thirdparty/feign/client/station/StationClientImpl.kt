@@ -42,18 +42,18 @@ class StationClientImpl(
         jacksonObjectMapper().readValue<JsonNode>(stationInfo)
             .findValue(RESULT)
             .findValue(STATION)
-            .map { station ->
-                StationElement(
-                    stationName = station.findValueByFieldName(STATION_NAME),
-                    stationId = station.findValueByFieldName(STATION_ID).toInt(),
-                    pointX = station.findValueByFieldName(POINT_X).toFloat(),
-                    pointY = station.findValueByFieldName(POINT_Y).toFloat(),
-                    busInfo = station.findValue(BUS_INFO).map { busInfo ->
-                        BusInfo(
-                            busLocalId = busInfo.findValueByFieldName(BUS_ID),
-                            busNo = busInfo.findValueByFieldName(BUS_NUMBER),
-                        )
-                    },
-                )
-            }
+            .map { it.getStation() }
+
+    private fun JsonNode.getStation() = StationElement(
+        stationName = this.findValueByFieldName(STATION_NAME),
+        stationId = this.findValueByFieldName(STATION_ID).toInt(),
+        pointX = this.findValueByFieldName(POINT_X).toFloat(),
+        pointY = this.findValueByFieldName(POINT_Y).toFloat(),
+        busInfo = this.findValue(BUS_INFO).map { it.getBusInfo() },
+    )
+
+    private fun JsonNode.getBusInfo() = BusInfo(
+        busLocalId = this.findValueByFieldName(BUS_ID),
+        busNo = this.findValueByFieldName(BUS_NUMBER),
+    )
 }
