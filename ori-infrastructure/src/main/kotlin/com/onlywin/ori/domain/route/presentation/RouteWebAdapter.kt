@@ -1,5 +1,6 @@
 package com.onlywin.ori.domain.route.presentation
 
+import com.onlywin.ori.domain.route.dto.response.QueryRouteList
 import com.onlywin.ori.domain.route.usecase.QueryRouteUseCase
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -18,5 +19,7 @@ class RouteWebAdapter(
         @RequestParam("start_y_point") startYPoint: Float,
         @RequestParam("end_x_point") endXPoint: Float,
         @RequestParam("end_y_point") endYPoint: Float,
-    ) = queryRouteUseCase(startXPoint, startYPoint, endXPoint, endYPoint)
+    ): QueryRouteList {
+        return queryRouteUseCase.execute(startXPoint, startYPoint, endXPoint, endYPoint)
+    }
 }

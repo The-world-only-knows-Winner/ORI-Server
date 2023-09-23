@@ -9,7 +9,7 @@ class QueryRouteUseCase(
     private val queryRoutePort: QueryRoutePort,
 ) {
 
-    operator fun invoke(
+    fun execute(
         startXPoint: Float,
         startYPoint: Float,
         endXPoint: Float,
