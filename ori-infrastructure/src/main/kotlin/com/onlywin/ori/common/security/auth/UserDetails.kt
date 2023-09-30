@@ -8,21 +8,11 @@ class UserDetails(
     private val userId: UUID,
 ) : UserDetails {
 
-    override fun getAuthorities(): MutableCollection<out GrantedAuthority> {
-        TODO("Not yet implemented")
-    }
-
-    override fun getPassword(): String {
-        TODO("Not yet implemented")
-    }
-
+    override fun getAuthorities(): MutableCollection<out GrantedAuthority> = mutableListOf()
+    override fun getPassword(): String? = null
     override fun getUsername() = userId.toString()
-
     override fun isAccountNonExpired() = true
-
     override fun isAccountNonLocked() = true
-
     override fun isCredentialsNonExpired() = true
-
     override fun isEnabled() = true
 }

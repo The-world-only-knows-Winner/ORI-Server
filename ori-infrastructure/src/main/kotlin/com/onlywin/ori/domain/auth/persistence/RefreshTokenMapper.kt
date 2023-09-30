@@ -6,5 +6,5 @@ import org.mapstruct.Mapper
 @Mapper(componentModel = "spring")
 abstract class RefreshTokenMapper {
     abstract fun refreshTokenDomainToEntity(refreshToken: RefreshToken): RefreshTokenEntity
-    abstract fun refreshTokenEntityToDomain(refreshTokenEntity: RefreshTokenEntity): RefreshToken
+    abstract fun refreshTokenEntityToDomain(refreshTokenEntity: RefreshTokenEntity?): RefreshToken?
 }
