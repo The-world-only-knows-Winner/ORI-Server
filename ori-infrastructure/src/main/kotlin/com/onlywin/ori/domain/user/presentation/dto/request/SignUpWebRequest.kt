@@ -9,23 +9,22 @@ import java.time.LocalDate
 
 data class SignUpWebRequest(
 
-    @NotBlank
-    @Email
+    @field:NotBlank
+    @field:Email
     val email: String,
 
-    @Pattern(regexp = "^(?=.[!@#\$%^&])[a-zA-Z0-9!@#\$%^&*]{8,20}\$")
+    @field:Pattern(regexp = "^(?=.[!@#\$%^&])[a-zA-Z0-9!@#\$%^&*]{8,20}\$")
     val password: String,
 
-    @NotBlank
+    @field:NotBlank
     val name: String,
 
-    @NotNull
+    @field:NotNull
     val birthday: LocalDate,
 
-    @NotBlank
+    @field:NotBlank
     val deviceToken: String,
 ) {
-
     fun toDomainRequest() = SignUpRequest(
         email = email,
         password = password,

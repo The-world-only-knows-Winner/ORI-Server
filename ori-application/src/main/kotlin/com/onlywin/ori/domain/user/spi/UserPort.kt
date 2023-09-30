@@ -6,7 +6,7 @@ import java.util.UUID
 interface UserPort : CommandUserPort, QueryUserPort
 
 interface CommandUserPort {
-    fun saveUser(user: User): User
+    fun saveUser(user: User)
 }
 
 interface QueryUserPort {

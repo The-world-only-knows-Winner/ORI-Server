@@ -12,4 +12,11 @@ data class User(
     val name: String,
     val birthday: LocalDate,
     val deviceToken: String,
-)
+) {
+    fun updateUserInfo(name: String, birthday: LocalDate): User {
+        return copy(
+            name = name,
+            birthday = birthday,
+        )
+    }
+}

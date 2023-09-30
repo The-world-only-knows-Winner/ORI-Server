@@ -6,8 +6,8 @@ import jakarta.validation.constraints.NotBlank
 
 data class SendAuthCodeWebRequest(
 
-    @NotBlank
-    @Email
+    @field:NotBlank
+    @field:Email
     val email: String,
 ) {
     fun toDomainRequest() = SendAuthCodeRequest(email)
