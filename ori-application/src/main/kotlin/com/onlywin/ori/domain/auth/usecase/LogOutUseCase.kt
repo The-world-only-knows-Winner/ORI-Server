@@ -2,6 +2,7 @@ package com.onlywin.ori.domain.auth.usecase
 
 import com.onlywin.ori.common.annotation.UseCase
 import com.onlywin.ori.common.spi.SecurityPort
+import com.onlywin.ori.domain.auth.exception.RefreshTokenNotFoundException
 import com.onlywin.ori.domain.auth.spi.CommandRefreshTokenPort
 import com.onlywin.ori.domain.auth.spi.QueryRefreshTokenPort
 
@@ -15,6 +16,7 @@ class LogOutUseCase(
     fun execute() {
         val userId = securityPort.getCurrentUserId()
         queryRefreshTokenPort.queryRefreshTokenByUserId(userId)
-            .run { commandRefreshTokenPort.deleteRefreshToken(this) }
+            ?.run { commandRefreshTokenPort.deleteRefreshToken(this) }
+            ?: throw RefreshTokenNotFoundException
     }
 }
