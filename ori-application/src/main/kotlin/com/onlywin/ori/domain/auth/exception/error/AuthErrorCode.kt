@@ -14,4 +14,5 @@ enum class AuthErrorCode(
     UNVERIFIED_EMAIL(403, "Unverified Email"),
 
     AUTH_CODE_NOT_FOUND(404, "Auth Code Not Found"),
+    REFRESH_TOKEN_NOT_FOUND(404, "Refresh Token Not Found"),
 }
