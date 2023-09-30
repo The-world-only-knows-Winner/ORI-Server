@@ -2,7 +2,6 @@ package com.onlywin.ori.domain.auth.persistence
 
 import com.onlywin.ori.common.annotation.Adapter
 import com.onlywin.ori.domain.auth.RefreshToken
-import com.onlywin.ori.domain.auth.exception.RefreshTokenNotFoundException
 import com.onlywin.ori.domain.auth.spi.RefreshTokenPort
 import org.springframework.data.repository.findByIdOrNull
 import java.util.UUID
@@ -17,9 +16,6 @@ class RefreshTokenPersistenceAdapter(
         refreshTokenRepository.delete(refreshTokenMapper.refreshTokenDomainToEntity(refreshToken))
     }
 
-    override fun queryRefreshTokenByUserId(userId: UUID): RefreshToken {
-        val refreshToken = refreshTokenRepository.findByIdOrNull(userId)
-            ?: throw RefreshTokenNotFoundException
-        return refreshTokenMapper.refreshTokenEntityToDomain(refreshToken)
-    }
+    override fun queryRefreshTokenByUserId(userId: UUID): RefreshToken? =
+        refreshTokenMapper.refreshTokenEntityToDomain(refreshTokenRepository.findByIdOrNull(userId))
 }
