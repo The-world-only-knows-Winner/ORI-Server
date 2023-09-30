@@ -13,7 +13,7 @@ data class SignUpWebRequest(
     @field:Email
     val email: String,
 
-    @field:Pattern(regexp = "^(?=.[!@#\$%^&])[a-zA-Z0-9!@#\$%^&*]{8,20}\$")
+    @field:Pattern(regexp = "^(?=.*[a-z])(?=.*\\d)(?=.*[!@#$%^&*]).{8,20}$")
     val password: String,
 
     @field:NotBlank
