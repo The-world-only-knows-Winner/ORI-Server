@@ -7,12 +7,12 @@ import jakarta.validation.constraints.Size
 
 data class VerifyAuthCodeWebRequest(
 
-    @NotBlank
-    @Email
+    @field:NotBlank
+    @field:Email
     val email: String,
 
-    @NotBlank
-    @Size(min = 6, max = 6)
+    @field:NotBlank
+    @field:Size(min = 6, max = 6)
     val code: String,
 ) {
     fun toDomainRequest() = VerifyAuthCodeRequest(
