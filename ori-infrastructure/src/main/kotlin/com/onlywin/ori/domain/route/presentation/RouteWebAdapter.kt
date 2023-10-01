@@ -1,16 +1,24 @@
 package com.onlywin.ori.domain.route.presentation
 
 import com.onlywin.ori.domain.route.dto.response.QueryRouteList
+import com.onlywin.ori.domain.route.presentation.dto.request.AddRouteWebRequest
+import com.onlywin.ori.domain.route.usecase.AddRouteUseCase
 import com.onlywin.ori.domain.route.usecase.QueryRouteUseCase
+import jakarta.validation.Valid
+import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
+import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.bind.annotation.RestController
 
 @RequestMapping("/route")
 @RestController
 class RouteWebAdapter(
     private val queryRouteUseCase: QueryRouteUseCase,
+    private val addRouteUseCase: AddRouteUseCase,
 ) {
 
     @GetMapping
@@ -21,5 +29,14 @@ class RouteWebAdapter(
         @RequestParam("end_y_point") endYPoint: Float,
     ): QueryRouteList {
         return queryRouteUseCase.execute(startXPoint, startYPoint, endXPoint, endYPoint)
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping
+    fun addRoute(
+        @RequestBody @Valid
+        request: AddRouteWebRequest,
+    ) {
+        addRouteUseCase.execute(request.toDomainRequest())
     }
 }
