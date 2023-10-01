@@ -70,6 +70,7 @@ class AuthWebAdapter(
         refreshToken: String,
     ): TokenResponse {
         return tokenRefreshUseCase.execute(refreshToken)
+    }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/password")
