@@ -1,9 +1,11 @@
 package com.onlywin.ori.domain.auth.presentation
 
 import com.onlywin.ori.domain.auth.dto.response.TokenResponse
+import com.onlywin.ori.domain.auth.presentation.dto.request.ChangePasswordWebRequest
 import com.onlywin.ori.domain.auth.presentation.dto.request.SendAuthCodeWebRequest
 import com.onlywin.ori.domain.auth.presentation.dto.request.SignInWebRequest
 import com.onlywin.ori.domain.auth.presentation.dto.request.VerifyAuthCodeWebRequest
+import com.onlywin.ori.domain.auth.usecase.ChangePasswordUseCase
 import com.onlywin.ori.domain.auth.usecase.LogOutUseCase
 import com.onlywin.ori.domain.auth.usecase.SendAuthCodeUseCase
 import com.onlywin.ori.domain.auth.usecase.SignInUseCase
@@ -29,6 +31,7 @@ class AuthWebAdapter(
     private val signInUseCase: SignInUseCase,
     private val logOutUseCase: LogOutUseCase,
     private val tokenRefreshUseCase: TokenRefreshUseCase,
+    private val changePasswordUseCase: ChangePasswordUseCase,
 ) {
 
     @PostMapping("/code")
@@ -67,5 +70,13 @@ class AuthWebAdapter(
         refreshToken: String,
     ): TokenResponse {
         return tokenRefreshUseCase.execute(refreshToken)
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping("/password")
+    fun changePassword(
+        @RequestBody @Valid
+        request: ChangePasswordWebRequest,
+    ) {
+        changePasswordUseCase.execute(request.toDomainRequest())
     }
 }

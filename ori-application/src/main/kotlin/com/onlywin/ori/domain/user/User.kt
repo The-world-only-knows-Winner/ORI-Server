@@ -19,4 +19,8 @@ data class User(
             birthday = birthday,
         )
     }
+
+    fun changePassword(newPassword: String): User {
+        return copy(password = newPassword)
+    }
 }
