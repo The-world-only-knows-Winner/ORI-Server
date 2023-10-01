@@ -18,4 +18,7 @@ class RefreshTokenPersistenceAdapter(
 
     override fun queryRefreshTokenByUserId(userId: UUID): RefreshToken? =
         refreshTokenMapper.refreshTokenEntityToDomain(refreshTokenRepository.findByIdOrNull(userId))
+
+    override fun queryRefreshTokenByRefreshToken(refreshToken: String): RefreshToken? =
+        refreshTokenMapper.refreshTokenEntityToDomain(refreshTokenRepository.findByToken(refreshToken))
 }

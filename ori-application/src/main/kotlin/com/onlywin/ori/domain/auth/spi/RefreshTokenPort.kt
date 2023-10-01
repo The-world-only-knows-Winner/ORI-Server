@@ -11,4 +11,5 @@ interface CommandRefreshTokenPort {
 
 interface QueryRefreshTokenPort {
     fun queryRefreshTokenByUserId(userId: UUID): RefreshToken?
+    fun queryRefreshTokenByRefreshToken(refreshToken: String): RefreshToken?
 }
