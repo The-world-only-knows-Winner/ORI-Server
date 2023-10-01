@@ -33,7 +33,7 @@ class AddRouteUseCase(
                 Station(
                     busNumber = subRoute.busNumber,
                     stationName = subRoute.stationName,
-                    index = subRoute.index, // TODO: 클라에서 보낼 수 있나?
+                    index = subRoute.index,
                     time = subRoute.sectionTime,
                     routeId = routeId,
                 )
