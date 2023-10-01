@@ -10,6 +10,7 @@ enum class AuthErrorCode(
     INVALID_AUTH_CODE(401, "Invalid Auth Code"),
 
     UN_AUTHORIZED(401, "Un Authorized"),
+    PASSWORD_MIS_MATCH(401, "Password Mis Matches"),
 
     UNVERIFIED_EMAIL(403, "Unverified Email"),
 
