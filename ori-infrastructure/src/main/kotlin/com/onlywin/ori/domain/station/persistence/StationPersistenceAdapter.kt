@@ -1,21 +1,24 @@
-package com.onlywin.ori.thirdparty.feign.client.station
+package com.onlywin.ori.domain.station.persistence
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import com.onlywin.ori.common.annotation.Adapter
 import com.onlywin.ori.common.util.findValueByFieldName
-import com.onlywin.ori.domain.station.dto.response.QueryStationList.BusInfo
-import com.onlywin.ori.domain.station.dto.response.QueryStationList.StationElement
+import com.onlywin.ori.domain.station.Station
+import com.onlywin.ori.domain.station.dto.response.QueryStationList
 import com.onlywin.ori.domain.station.spi.StationPort
+import com.onlywin.ori.thirdparty.feign.client.station.StationClient
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.stereotype.Component
 import java.net.URLEncoder
 
-@Component
-class StationClientImpl(
+@Adapter
+class StationPersistenceAdapter(
     @Value("\${api.key}")
     private val apiKey: String,
     private val stationClient: StationClient,
+    private val stationRepository: StationRepository,
+    private val stationMapper: StationMapper,
 ) : StationPort {
 
     companion object {
@@ -30,7 +33,11 @@ class StationClientImpl(
         const val BUS_NUMBER = "busNo"
     }
 
-    override fun queryStationByStationName(stationName: String): List<StationElement> {
+    override fun saveAllStation(stationList: List<Station>) {
+        stationRepository.saveAll(stationList.map(stationMapper::stationDomainToEntity))
+    }
+
+    override fun queryStationByStationName(stationName: String): List<QueryStationList.StationElement> {
         val stationInfo = stationClient.getStationByStationName(
             apiKey = URLEncoder.encode(apiKey, "UTF-8"),
             stationName = stationName,
@@ -38,13 +45,13 @@ class StationClientImpl(
         return dataParsing(stationInfo)
     }
 
-    private fun dataParsing(stationInfo: String): List<StationElement> =
+    private fun dataParsing(stationInfo: String): List<QueryStationList.StationElement> =
         jacksonObjectMapper().readValue<JsonNode>(stationInfo)
             .findValue(RESULT)
             .findValue(STATION)
             .map { it.getStation() }
 
-    private fun JsonNode.getStation() = StationElement(
+    private fun JsonNode.getStation() = QueryStationList.StationElement(
         stationName = this.findValueByFieldName(STATION_NAME),
         stationId = this.findValueByFieldName(STATION_ID).toInt(),
         pointX = this.findValueByFieldName(POINT_X).toFloat(),
@@ -52,7 +59,7 @@ class StationClientImpl(
         busInfo = this.findValue(BUS_INFO).map { it.getBusInfo() },
     )
 
-    private fun JsonNode.getBusInfo() = BusInfo(
+    private fun JsonNode.getBusInfo() = QueryStationList.BusInfo(
         busLocalId = this.findValueByFieldName(BUS_ID),
         busNo = this.findValueByFieldName(BUS_NUMBER),
     )
