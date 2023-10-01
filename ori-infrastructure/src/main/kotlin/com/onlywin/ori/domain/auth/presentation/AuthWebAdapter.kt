@@ -48,7 +48,10 @@ class AuthWebAdapter(
     }
 
     @PostMapping("/token")
-    fun signIn(@RequestBody request: SignInWebRequest): TokenResponse {
+    fun signIn(
+        @RequestBody
+        request: SignInWebRequest,
+    ): TokenResponse {
         return signInUseCase.execute(request.toDomainRequest())
     }
 
@@ -59,7 +62,10 @@ class AuthWebAdapter(
     }
 
     @PutMapping("/token")
-    fun tokenRefresh(@RequestHeader("Refresh-Token") refreshToken: String): TokenResponse {
+    fun tokenRefresh(
+        @RequestHeader("Refresh-Token")
+        refreshToken: String,
+    ): TokenResponse {
         return tokenRefreshUseCase.execute(refreshToken)
     }
 }

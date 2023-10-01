@@ -14,7 +14,10 @@ class StationWebAdapter(
 ) {
 
     @GetMapping
-    fun getStationByStationName(@RequestParam("stationName") stationName: String): QueryStationList {
+    fun getStationByStationName(
+        @RequestParam("stationName")
+        stationName: String,
+    ): QueryStationList {
         return queryStationUseCase.execute(stationName)
     }
 }
