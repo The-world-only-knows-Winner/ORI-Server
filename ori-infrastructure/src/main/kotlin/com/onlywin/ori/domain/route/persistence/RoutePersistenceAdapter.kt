@@ -6,8 +6,7 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import com.onlywin.ori.common.annotation.Adapter
 import com.onlywin.ori.common.util.findValueByFieldName
 import com.onlywin.ori.domain.route.Route
-import com.onlywin.ori.domain.route.dto.response.QueryRouteList
-import com.onlywin.ori.domain.route.dto.response.QueryRouteList.RouteElement
+import com.onlywin.ori.domain.route.dto.response.QueryRouteList.*
 import com.onlywin.ori.domain.route.enums.TrafficType
 import com.onlywin.ori.domain.route.spi.RoutePort
 import com.onlywin.ori.thirdparty.feign.client.route.RouteClient
@@ -76,12 +75,12 @@ class RoutePersistenceAdapter(
         pathList = this.findValue(PATH).map { it.getPath() },
     )
 
-    private fun JsonNode.getPath() = QueryRouteList.Path(
+    private fun JsonNode.getPath() = Path(
         pathInfo = this.findValue(PATH_INFO).getPathInfo(),
         subPathList = this.findValue(SUB_PATH_LIST).map { it.getSubPathList() },
     )
 
-    private fun JsonNode.getSubPathList() = QueryRouteList.SubPath(
+    private fun JsonNode.getSubPathList() = SubPath(
         trafficType = this.findValueByFieldName(TRAFFIC_TYPE).toInt().let {
             when (it) {
                 1 -> TrafficType.SUBWAY
@@ -99,7 +98,7 @@ class RoutePersistenceAdapter(
         endYPoint = this.findValueByFieldName(END_Y_POINT).ifEmpty { "0" }.toFloat(),
     )
 
-    private fun JsonNode.getPathInfo() = QueryRouteList.PathInfo(
+    private fun JsonNode.getPathInfo() = PathInfo(
         totalTime = this.findValueByFieldName(TOTAL_TIME).toInt(),
         busTransitCount = this.findValueByFieldName(BUS_TRANSIT_COUNT).toInt(),
         firstStartStation = this.findValueByFieldName(FIRST_START_STATION),
