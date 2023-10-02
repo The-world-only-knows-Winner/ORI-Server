@@ -6,9 +6,9 @@ data class AddRouteRequest(
     val endXPoint: Float,
     val endYPoint: Float,
     val totalTime: Int,
-    val subRouteList: List<SubRouteRequest>,
+    val subStationList: List<SubStationRequest>,
 ) {
-    data class SubRouteRequest(
+    data class SubStationRequest(
         val busNumber: String,
         val stationName: String,
         val index: Int,

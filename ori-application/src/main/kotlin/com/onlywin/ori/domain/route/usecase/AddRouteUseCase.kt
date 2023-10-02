@@ -16,7 +16,7 @@ class AddRouteUseCase(
 ) {
 
     fun execute(request: AddRouteRequest) {
-        val (startXPoint, startYPoint, endXPoint, endYPoint, totalTime, subRouteList) = request
+        val (startXPoint, startYPoint, endXPoint, endYPoint, totalTime, subStationList) = request
         val routeId = commandRoutePort.saveRouteAndGetId(
             Route(
                 startXPoint = startXPoint,
@@ -29,12 +29,12 @@ class AddRouteUseCase(
         )
 
         commandStationPort.saveAllStation(
-            subRouteList.map { subRoute ->
+            subStationList.map { subStation ->
                 Station(
-                    busNumber = subRoute.busNumber,
-                    stationName = subRoute.stationName,
-                    index = subRoute.index,
-                    time = subRoute.sectionTime,
+                    busNumber = subStation.busNumber,
+                    stationName = subStation.stationName,
+                    index = subStation.index,
+                    time = subStation.sectionTime,
                     routeId = routeId,
                 )
             },

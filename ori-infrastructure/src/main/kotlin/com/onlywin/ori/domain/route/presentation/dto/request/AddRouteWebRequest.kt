@@ -1,7 +1,7 @@
 package com.onlywin.ori.domain.route.presentation.dto.request
 
 import com.onlywin.ori.domain.route.dto.request.AddRouteRequest
-import com.onlywin.ori.domain.route.dto.request.AddRouteRequest.SubRouteRequest
+import com.onlywin.ori.domain.route.dto.request.AddRouteRequest.SubStationRequest
 import jakarta.validation.constraints.NotBlank
 
 data class AddRouteWebRequest(
@@ -10,9 +10,9 @@ data class AddRouteWebRequest(
     val endXPoint: Float,
     val endYPoint: Float,
     val totalTime: Int,
-    val subRouteList: List<SubRouteWebRequest>,
+    val subStationList: List<SubStationWebRequest>,
 ) {
-    data class SubRouteWebRequest(
+    data class SubStationWebRequest(
         @field:NotBlank
         val busNumber: String,
         @field:NotBlank
@@ -20,7 +20,7 @@ data class AddRouteWebRequest(
         val index: Int,
         val sectionTime: Int,
     ) {
-        fun toDomainRequest() = SubRouteRequest(
+        fun toDomainRequest() = SubStationRequest(
             busNumber = busNumber,
             stationName = stationName,
             index = index,
@@ -34,6 +34,6 @@ data class AddRouteWebRequest(
         endXPoint = endXPoint,
         endYPoint = endYPoint,
         totalTime = totalTime,
-        subRouteList = subRouteList.map(SubRouteWebRequest::toDomainRequest),
+        subStationList = subStationList.map(SubStationWebRequest::toDomainRequest),
     )
 }
