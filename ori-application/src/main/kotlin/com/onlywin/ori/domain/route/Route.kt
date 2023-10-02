@@ -5,7 +5,7 @@ import java.util.UUID
 
 @Aggregate
 data class Route(
-    val id: UUID,
+    val id: UUID = UUID.randomUUID(),
     val startXPoint: Float,
     val startYPoint: Float,
     val endXPoint: Float,

@@ -1,24 +1,26 @@
-package com.onlywin.ori.thirdparty.feign.client.route
+package com.onlywin.ori.domain.route.persistence
 
 import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import com.onlywin.ori.common.annotation.Adapter
 import com.onlywin.ori.common.util.findValueByFieldName
-import com.onlywin.ori.domain.route.dto.response.QueryRouteList.Path
-import com.onlywin.ori.domain.route.dto.response.QueryRouteList.PathInfo
-import com.onlywin.ori.domain.route.dto.response.QueryRouteList.RouteElement
-import com.onlywin.ori.domain.route.dto.response.QueryRouteList.SubPath
+import com.onlywin.ori.domain.route.Route
+import com.onlywin.ori.domain.route.dto.response.QueryRouteList.*
 import com.onlywin.ori.domain.route.enums.TrafficType
 import com.onlywin.ori.domain.route.spi.RoutePort
+import com.onlywin.ori.thirdparty.feign.client.route.RouteClient
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.stereotype.Component
 import java.net.URLEncoder
+import java.util.UUID
 
-@Component
-class RouteClientImpl(
+@Adapter
+class RoutePersistenceAdapter(
     @Value("\${api.key}")
     private val apiKey: String,
     private val routeClient: RouteClient,
+    private val routeRepository: RouteRepository,
+    private val routeMapper: RouteMapper,
 ) : RoutePort {
 
     companion object {
@@ -41,6 +43,9 @@ class RouteClientImpl(
         const val END_X_POINT = "endX"
         const val END_Y_POINT = "endY"
     }
+
+    override fun saveRouteAndGetId(route: Route): UUID =
+        routeRepository.save(routeMapper.routeDomainToEntity(route)).id
 
     override fun queryPublicTransitRouteByPoint(
         startXPoint: Float,

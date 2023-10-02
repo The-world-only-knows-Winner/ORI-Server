@@ -5,7 +5,7 @@ import java.util.UUID
 
 @Aggregate
 data class Station(
-    val id: UUID,
+    val id: UUID = UUID.randomUUID(),
     val busNumber: String,
     val stationName: String,
     val index: Int,
