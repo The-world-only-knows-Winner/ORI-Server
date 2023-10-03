@@ -6,7 +6,6 @@ import com.fasterxml.jackson.module.kotlin.readValue
 import com.onlywin.ori.common.annotation.Adapter
 import com.onlywin.ori.common.util.findValueByFieldName
 import com.onlywin.ori.domain.route.Route
-import com.onlywin.ori.domain.route.dto.response.QueryRouteList
 import com.onlywin.ori.domain.route.dto.response.QueryRouteList.*
 import com.onlywin.ori.domain.route.enums.TrafficType
 import com.onlywin.ori.domain.route.persistence.QRouteEntity.routeEntity
@@ -64,14 +63,13 @@ class RoutePersistenceAdapter(
                     routeEntity.endName,
                     routeEntity.endXPoint,
                     routeEntity.endYPoint,
-                    routeEntity.time
-                )
+                    routeEntity.time,
+                ),
             )
             .from(routeEntity)
             .join(routeEntity.user, userEntity)
             .where(userEntity.id.eq(userId))
             .fetch()
-
 
     override fun queryPublicTransitRouteByPoint(
         startXPoint: Float,

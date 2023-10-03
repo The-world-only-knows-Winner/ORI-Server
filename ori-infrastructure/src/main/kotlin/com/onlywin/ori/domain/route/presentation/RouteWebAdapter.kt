@@ -43,7 +43,7 @@ class RouteWebAdapter(
         addRouteUseCase.execute(request.toDomainRequest())
     }
 
-    @GetMapping("my")
+    @GetMapping("/my")
     fun getMyRoute(): QueryMyRouteListResponse {
         return queryMyRouteListUseCase.execute()
     }

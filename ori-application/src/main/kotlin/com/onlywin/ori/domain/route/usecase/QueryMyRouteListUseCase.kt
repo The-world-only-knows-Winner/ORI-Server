@@ -15,7 +15,7 @@ class QueryMyRouteListUseCase(
         val userId = securityPort.getCurrentUserId()
 
         return QueryMyRouteListResponse(
-            queryRoutePort.queryRouteListByUserId(userId)
+            queryRoutePort.queryRouteListByUserId(userId),
         )
     }
 }
