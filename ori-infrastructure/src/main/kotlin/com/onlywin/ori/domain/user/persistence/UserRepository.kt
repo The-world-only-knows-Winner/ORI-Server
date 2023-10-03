@@ -6,5 +6,5 @@ import java.util.UUID
 
 interface UserRepository : CrudRepository<UserEntity, UUID> {
     fun existsByEmail(email: String): Boolean
-    fun findByEmail(email: String): User
+    fun findByEmail(email: String): User?
 }
