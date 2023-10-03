@@ -5,8 +5,10 @@ import com.onlywin.ori.domain.route.dto.request.AddRouteRequest.SubStationReques
 import jakarta.validation.constraints.NotBlank
 
 data class AddRouteWebRequest(
+    val startName: String,
     val startXPoint: Float,
     val startYPoint: Float,
+    val endName: String,
     val endXPoint: Float,
     val endYPoint: Float,
     val totalTime: Int,
@@ -29,8 +31,10 @@ data class AddRouteWebRequest(
     }
 
     fun toDomainRequest() = AddRouteRequest(
+        startName = startName,
         startXPoint = startXPoint,
         startYPoint = startYPoint,
+        endName = endName,
         endXPoint = endXPoint,
         endYPoint = endYPoint,
         totalTime = totalTime,
