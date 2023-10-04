@@ -66,6 +66,7 @@ class StationPersistenceAdapter(
             .from(stationEntity)
             .join(stationEntity.route, routeEntity)
             .where(routeEntity.id.eq(routeId))
+            .orderBy(stationEntity.index.asc())
             .fetch()
 
     private fun dataParsing(stationInfo: String): List<StationElement> =
