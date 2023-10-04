@@ -16,11 +16,13 @@ class AddRouteUseCase(
 ) {
 
     fun execute(request: AddRouteRequest) {
-        val (startXPoint, startYPoint, endXPoint, endYPoint, totalTime, subStationList) = request
+        val (startName, startXPoint, startYPoint, endName, endXPoint, endYPoint, totalTime, subStationList) = request
         val routeId = commandRoutePort.saveRouteAndGetId(
             Route(
+                startName = startName,
                 startXPoint = startXPoint,
                 startYPoint = startYPoint,
+                endName = endName,
                 endXPoint = endXPoint,
                 endYPoint = endYPoint,
                 time = totalTime,

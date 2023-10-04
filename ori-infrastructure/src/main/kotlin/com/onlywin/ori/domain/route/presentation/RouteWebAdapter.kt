@@ -1,8 +1,10 @@
 package com.onlywin.ori.domain.route.presentation
 
+import com.onlywin.ori.domain.route.dto.response.QueryMyRouteListResponse
 import com.onlywin.ori.domain.route.dto.response.QueryRouteList
 import com.onlywin.ori.domain.route.presentation.dto.request.AddRouteWebRequest
 import com.onlywin.ori.domain.route.usecase.AddRouteUseCase
+import com.onlywin.ori.domain.route.usecase.QueryMyRouteListUseCase
 import com.onlywin.ori.domain.route.usecase.QueryRouteUseCase
 import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController
 class RouteWebAdapter(
     private val queryRouteUseCase: QueryRouteUseCase,
     private val addRouteUseCase: AddRouteUseCase,
+    private val queryMyRouteListUseCase: QueryMyRouteListUseCase,
 ) {
 
     @GetMapping
@@ -38,5 +41,10 @@ class RouteWebAdapter(
         request: AddRouteWebRequest,
     ) {
         addRouteUseCase.execute(request.toDomainRequest())
+    }
+
+    @GetMapping("/my")
+    fun getMyRoute(): QueryMyRouteListResponse {
+        return queryMyRouteListUseCase.execute()
     }
 }

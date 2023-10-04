@@ -17,12 +17,20 @@ class RouteEntity(
     override val id: UUID,
 
     @field:NotNull
+    @Column(columnDefinition = "VARCHAR(30)")
+    val startName: String,
+
+    @field:NotNull
     @Column(columnDefinition = "FLOAT")
     val startXPoint: Float,
 
     @field:NotNull
     @Column(columnDefinition = "FLOAT")
     val startYPoint: Float,
+
+    @field:NotNull
+    @Column(columnDefinition = "VARCHAR(30)")
+    val endName: String,
 
     @field:NotNull
     @Column(columnDefinition = "FLOAT")

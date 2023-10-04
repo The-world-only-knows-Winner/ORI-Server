@@ -8,8 +8,13 @@ import com.onlywin.ori.common.util.findValueByFieldName
 import com.onlywin.ori.domain.route.Route
 import com.onlywin.ori.domain.route.dto.response.QueryRouteList.*
 import com.onlywin.ori.domain.route.enums.TrafficType
+import com.onlywin.ori.domain.route.persistence.QRouteEntity.routeEntity
+import com.onlywin.ori.domain.route.persistence.vo.QQueryMyRouteListVO
+import com.onlywin.ori.domain.route.persistence.vo.QueryMyRouteListVO
 import com.onlywin.ori.domain.route.spi.RoutePort
+import com.onlywin.ori.domain.user.persistence.QUserEntity.userEntity
 import com.onlywin.ori.thirdparty.feign.client.route.RouteClient
+import com.querydsl.jpa.impl.JPAQueryFactory
 import org.springframework.beans.factory.annotation.Value
 import java.net.URLEncoder
 import java.util.UUID
@@ -21,6 +26,7 @@ class RoutePersistenceAdapter(
     private val routeClient: RouteClient,
     private val routeRepository: RouteRepository,
     private val routeMapper: RouteMapper,
+    private val queryFactory: JPAQueryFactory,
 ) : RoutePort {
 
     companion object {
@@ -46,6 +52,24 @@ class RoutePersistenceAdapter(
 
     override fun saveRouteAndGetId(route: Route): UUID =
         routeRepository.save(routeMapper.routeDomainToEntity(route)).id
+
+    override fun queryRouteListByUserId(userId: UUID): List<QueryMyRouteListVO> =
+        queryFactory
+            .select(
+                QQueryMyRouteListVO(
+                    routeEntity.startName,
+                    routeEntity.startXPoint,
+                    routeEntity.startYPoint,
+                    routeEntity.endName,
+                    routeEntity.endXPoint,
+                    routeEntity.endYPoint,
+                    routeEntity.time,
+                ),
+            )
+            .from(routeEntity)
+            .join(routeEntity.user, userEntity)
+            .where(userEntity.id.eq(userId))
+            .fetch()
 
     override fun queryPublicTransitRouteByPoint(
         startXPoint: Float,
