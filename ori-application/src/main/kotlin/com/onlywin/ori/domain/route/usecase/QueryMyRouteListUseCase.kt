@@ -11,11 +11,7 @@ class QueryMyRouteListUseCase(
     private val securityPort: SecurityPort,
 ) {
 
-    fun execute(): QueryMyRouteListResponse {
-        val userId = securityPort.getCurrentUserId()
-
-        return QueryMyRouteListResponse(
-            queryRoutePort.queryRouteListByUserId(userId),
-        )
-    }
+    fun execute(): QueryMyRouteListResponse = QueryMyRouteListResponse(
+        queryRoutePort.queryRouteListByUserId(securityPort.getCurrentUserId()),
+    )
 }
