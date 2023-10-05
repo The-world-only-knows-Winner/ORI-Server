@@ -5,12 +5,19 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.onlywin.ori.common.annotation.Adapter
 import com.onlywin.ori.common.util.findValueByFieldName
+import com.onlywin.ori.domain.route.persistence.QRouteEntity.routeEntity
 import com.onlywin.ori.domain.station.Station
-import com.onlywin.ori.domain.station.dto.response.QueryStationList.*
+import com.onlywin.ori.domain.station.dto.response.QueryStationList.StationElement
+import com.onlywin.ori.domain.station.dto.response.QueryStationList.BusInfo
+import com.onlywin.ori.domain.station.persistence.QStationEntity.stationEntity
+import com.onlywin.ori.domain.station.persistence.vo.QQueryRouteStationListVO
+import com.onlywin.ori.domain.station.persistence.vo.QueryRouteStationListVO
 import com.onlywin.ori.domain.station.spi.StationPort
 import com.onlywin.ori.thirdparty.feign.client.station.StationClient
+import com.querydsl.jpa.impl.JPAQueryFactory
 import org.springframework.beans.factory.annotation.Value
 import java.net.URLEncoder
+import java.util.UUID
 
 @Adapter
 class StationPersistenceAdapter(
@@ -19,6 +26,7 @@ class StationPersistenceAdapter(
     private val stationClient: StationClient,
     private val stationRepository: StationRepository,
     private val stationMapper: StationMapper,
+    private val queryFactory: JPAQueryFactory,
 ) : StationPort {
 
     companion object {
@@ -44,6 +52,22 @@ class StationPersistenceAdapter(
         )
         return dataParsing(stationInfo)
     }
+
+    override fun queryStationByRouteId(routeId: UUID): List<QueryRouteStationListVO> =
+        queryFactory
+            .select(
+                QQueryRouteStationListVO(
+                    stationEntity.busNumber,
+                    stationEntity.stationName,
+                    stationEntity.index,
+                    stationEntity.time,
+                )
+            )
+            .from(stationEntity)
+            .join(stationEntity.route, routeEntity)
+            .where(routeEntity.id.eq(routeId))
+            .orderBy(stationEntity.index.asc())
+            .fetch()
 
     private fun dataParsing(stationInfo: String): List<StationElement> =
         jacksonObjectMapper().readValue<JsonNode>(stationInfo)
