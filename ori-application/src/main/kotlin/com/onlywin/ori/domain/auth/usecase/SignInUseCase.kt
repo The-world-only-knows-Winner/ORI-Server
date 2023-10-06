@@ -4,7 +4,7 @@ import com.onlywin.ori.common.annotation.UseCase
 import com.onlywin.ori.common.spi.SecurityPort
 import com.onlywin.ori.domain.auth.dto.request.SignInRequest
 import com.onlywin.ori.domain.auth.dto.response.TokenResponse
-import com.onlywin.ori.domain.auth.exception.EmailMisMatchException
+import com.onlywin.ori.domain.auth.exception.EmailNotFoundException
 import com.onlywin.ori.domain.auth.exception.PasswordMisMatchException
 import com.onlywin.ori.domain.auth.spi.JwtPort
 import com.onlywin.ori.domain.user.spi.QueryUserPort
@@ -17,7 +17,7 @@ class SignInUseCase(
 ) {
     fun execute(request: SignInRequest): TokenResponse {
         val user = queryUserPort.queryUserByEmail(request.email)
-            ?: throw EmailMisMatchException
+            ?: throw EmailNotFoundException
 
         checkPasswordMatches(request.password, user.password)
 
