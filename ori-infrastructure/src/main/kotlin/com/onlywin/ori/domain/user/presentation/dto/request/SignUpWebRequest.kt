@@ -21,15 +21,11 @@ data class SignUpWebRequest(
 
     @field:NotNull
     val birthday: LocalDate,
-
-    @field:NotBlank
-    val deviceToken: String,
 ) {
     fun toDomainRequest() = SignUpRequest(
         email = email,
         password = password,
         name = name,
         birthday = birthday,
-        deviceToken = deviceToken,
     )
 }

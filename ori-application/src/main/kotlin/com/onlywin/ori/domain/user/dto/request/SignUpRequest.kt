@@ -7,5 +7,4 @@ data class SignUpRequest(
     val password: String,
     val name: String,
     val birthday: LocalDate,
-    val deviceToken: String,
 )
