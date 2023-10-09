@@ -28,8 +28,4 @@ class UserEntity(
     @field:NotNull
     @Column(columnDefinition = "DATE")
     val birthday: LocalDate,
-
-    @field:NotNull
-    @Column(columnDefinition = "VARCHAR(255)")
-    val deviceToken: String,
 ) : BaseUUIDEntity(id)
