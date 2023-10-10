@@ -2,8 +2,8 @@ package com.onlywin.ori.domain.auth.usecase
 
 import com.onlywin.ori.common.annotation.UseCase
 import com.onlywin.ori.common.spi.SendMailPort
-import com.onlywin.ori.domain.auth.dto.request.SendAuthCodeRequest
 import com.onlywin.ori.domain.auth.AuthCode
+import com.onlywin.ori.domain.auth.dto.request.SendAuthCodeRequest
 import com.onlywin.ori.domain.auth.spi.CommendAuthCodePort
 
 @UseCase
@@ -13,7 +13,7 @@ class SendAuthCodeUseCase(
 ) {
 
     fun execute(request: SendAuthCodeRequest) {
-        val code = (Math.random() * 899999).toInt().toString()
+        val code = (100000..999999).random().toString()
 
         commendAuthCodePort.saveAuthCode(
             AuthCode(
