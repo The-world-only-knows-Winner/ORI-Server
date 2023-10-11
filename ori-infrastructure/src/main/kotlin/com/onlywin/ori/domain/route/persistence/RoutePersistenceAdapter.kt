@@ -57,6 +57,7 @@ class RoutePersistenceAdapter(
         queryFactory
             .select(
                 QQueryMyRouteListVO(
+                    routeEntity.id,
                     routeEntity.startName,
                     routeEntity.startXPoint,
                     routeEntity.startYPoint,

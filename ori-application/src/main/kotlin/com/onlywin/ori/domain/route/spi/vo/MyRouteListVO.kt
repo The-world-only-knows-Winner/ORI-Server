@@ -1,6 +1,9 @@
 package com.onlywin.ori.domain.route.spi.vo
 
+import java.util.UUID
+
 open class MyRouteListVO(
+    val routeId: UUID,
     val startName: String,
     val startXPoint: Float,
     val startYPoint: Float,
