@@ -14,6 +14,7 @@ import com.onlywin.ori.domain.route.persistence.vo.QueryMyRouteListVO
 import com.onlywin.ori.domain.route.spi.RoutePort
 import com.onlywin.ori.domain.user.persistence.QUserEntity.userEntity
 import com.onlywin.ori.thirdparty.feign.client.route.RouteClient
+import com.onlywin.ori.thirdparty.feign.exception.FeignBadRequestException
 import com.querydsl.jpa.impl.JPAQueryFactory
 import org.springframework.beans.factory.annotation.Value
 import java.net.URLEncoder
@@ -90,10 +91,11 @@ class RoutePersistenceAdapter(
         return dataParsing(routeInfo)
     }
 
-    private fun dataParsing(routeInfo: String): RouteElement =
-        jacksonObjectMapper().readValue<JsonNode>(routeInfo)
-            .findValue(RESULT)
-            .getRoute()
+    private fun dataParsing(routeInfo: String): RouteElement {
+        val result = jacksonObjectMapper().readValue<JsonNode>(routeInfo).findValue(RESULT)
+            ?: throw FeignBadRequestException
+        return result.getRoute()
+    }
 
     private fun JsonNode.getRoute() = RouteElement(
         busCount = this.findValueByFieldName(BUS_COUNT).toInt(),
