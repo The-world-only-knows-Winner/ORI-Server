@@ -15,6 +15,8 @@ import com.onlywin.ori.domain.route.spi.RoutePort
 import com.onlywin.ori.domain.user.persistence.QUserEntity.userEntity
 import com.onlywin.ori.thirdparty.feign.client.route.RouteClient
 import com.onlywin.ori.thirdparty.feign.exception.FeignBadRequestException
+import com.onlywin.ori.thirdparty.feign.exception.FeignInternalServerErrorException
+import com.onlywin.ori.thirdparty.feign.exception.FeignNotFoundException
 import com.querydsl.jpa.impl.JPAQueryFactory
 import org.springframework.beans.factory.annotation.Value
 import java.net.URLEncoder
@@ -49,6 +51,8 @@ class RoutePersistenceAdapter(
         const val END_NAME = "endName"
         const val END_X_POINT = "endX"
         const val END_Y_POINT = "endY"
+        const val ERROR = "error"
+        const val CODE = "code"
     }
 
     override fun saveRouteAndGetId(route: Route): UUID =
@@ -92,9 +96,22 @@ class RoutePersistenceAdapter(
     }
 
     private fun dataParsing(routeInfo: String): RouteElement {
+        println(routeInfo)
         val result = jacksonObjectMapper().readValue<JsonNode>(routeInfo).findValue(RESULT)
-            ?: throw FeignBadRequestException
+            ?: errorDataParsing(routeInfo)
         return result.getRoute()
+    }
+
+    private fun errorDataParsing(routeInfo: String): JsonNode {
+        val result = jacksonObjectMapper().readValue<JsonNode>(routeInfo).findValue(ERROR)
+        val errorCode = result.findValueByFieldName(CODE).toInt()
+         if (errorCode in 3..6 || errorCode == -99) {
+            throw FeignNotFoundException
+        } else if (errorCode <= -8) {
+             throw FeignBadRequestException
+         } else {
+            throw FeignInternalServerErrorException
+        }
     }
 
     private fun JsonNode.getRoute() = RouteElement(
