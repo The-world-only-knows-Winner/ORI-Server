@@ -96,7 +96,6 @@ class RoutePersistenceAdapter(
     }
 
     private fun dataParsing(routeInfo: String): RouteElement {
-        println(routeInfo)
         val result = jacksonObjectMapper().readValue<JsonNode>(routeInfo).findValue(RESULT)
             ?: errorDataParsing(routeInfo)
         return result.getRoute()
@@ -105,12 +104,10 @@ class RoutePersistenceAdapter(
     private fun errorDataParsing(routeInfo: String): JsonNode {
         val result = jacksonObjectMapper().readValue<JsonNode>(routeInfo).findValue(ERROR)
         val errorCode = result.findValueByFieldName(CODE).toInt()
-         if (errorCode in 3..6 || errorCode == -99) {
-            throw FeignNotFoundException
-        } else if (errorCode <= -8) {
-             throw FeignBadRequestException
-         } else {
-            throw FeignInternalServerErrorException
+        when(errorCode) {
+            in 3..6, -99 -> throw FeignNotFoundException
+            in Int.MIN_VALUE..-8 -> throw FeignBadRequestException
+            else -> throw FeignInternalServerErrorException
         }
     }
 
