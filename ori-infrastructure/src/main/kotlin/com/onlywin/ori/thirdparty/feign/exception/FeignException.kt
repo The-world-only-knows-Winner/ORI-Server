@@ -7,6 +7,10 @@ object FeignBadRequestException : OriException(
     FeignErrorCode.FEIGN_BAD_REQUEST,
 )
 
+object FeignNotFoundException : OriException(
+    FeignErrorCode.FEIGN_NOT_FOUND,
+)
+
 object FeignUnAuthorizedException : OriException(
     FeignErrorCode.FEIGN_UNAUTHORIZED,
 )
